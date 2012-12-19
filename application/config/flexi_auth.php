@@ -174,7 +174,7 @@
 	$config['database']['custom']['user_profile']['foreign_key'] = 'upro_uacc_fk';
 	$config['database']['custom']['user_profile']['join'] = 'demo_user_profiles.upro_uacc_fk';
 	$config['database']['custom']['user_profile']['custom_columns'] = array(
-		'upro_first_name','upro_last_name','upro_phone','upro_newsletter'
+		'upro_first_name','upro_last_name'
 	);
 
 	###+++++++++++++++++++++++++++###
@@ -465,7 +465,7 @@
 	 *	Do NOT change this salt once users have started registering accounts as their passwords will not work without the original salt.
 	 *	CHANGE THE DEFAULT STATIC SALT SET BELOW TO YOUR OWN RANDOM SET OF CHARACTERS.
 	*/
-	$config['security']['static_salt'] = 'change-me!';
+	$config['security']['static_salt'] = 'a45d21a';
 	
 	/**
 	 * Set whether a salt is stored in the database and then used for password and hash token generation.
@@ -539,8 +539,8 @@
 	 * Set your unique reCAPTCHA api keys.
 	 * !IMPORTANT: Obtain YOUR OWN reCAPTCHA keys from http://www.google.com/recaptcha.
 	*/
-	$config['security']['recaptcha_public_key']	= 'ENTER_RECAPTCHA_PUBLIC_KEY_HERE';
-	$config['security']['recaptcha_private_key'] = 'ENTER_RECAPTCHA_PRIVATE_KEY_HERE'; 
+	$config['security']['recaptcha_public_key']	= '6LfyitoSAAAAAJDT91Rb6cx4kdySxSWFpOBLkXvz';
+	$config['security']['recaptcha_private_key'] = '6LfyitoSAAAAAND6J7LMdPV6Qu1TXz4D4kcCfuY2'; 
 
 	/**
 	 * Set the theme of the reCAPTCHA. For custom theming, see https://developers.google.com/recaptcha/docs/customization
@@ -591,7 +591,7 @@
 	 *
  	 * Example: Time in minutes, 0 = unlimited, 60*24 = 24 hours, 1440 = 24 hours
 	*/
-	$config['settings']['account_activation_time_limit'] = 0;
+	$config['settings']['account_activation_time_limit'] = 60*24;
 
 	/**
 	 * Set the id of the default group that new users will be added to unless otherwise specified.

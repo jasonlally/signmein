@@ -1,13 +1,15 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Demo_auth_model extends CI_Model {
+class Demo_auth_model extends MY_Model {
+	
+	protected $CI;
 	
 	// The following method prevents an error occurring when $this->data is modified.
 	// Error Message: 'Indirect modification of overloaded property Demo_cart_admin_model::$data has no effect'.
 	public function &__get($key)
 	{
-		$CI =& get_instance();
-		return $CI->$key;
+		$this->CI =& get_instance();
+		return $this->CI->$key;
 	}
 
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	
@@ -108,12 +110,12 @@ class Demo_auth_model extends CI_Model {
 		// Set validation rules.
 		// The custom rules 'identity_available' and 'validate_password' can be found in '../libaries/MY_Form_validation.php'.
 		$validation_rules = array(
-			array('field' => 'register_first_name', 'label' => 'First Name', 'rules' => 'required'),
-			array('field' => 'register_last_name', 'label' => 'Last Name', 'rules' => 'required'),
-			array('field' => 'register_phone_number', 'label' => 'Phone Number', 'rules' => 'required'),
-			array('field' => 'register_newsletter', 'label' => 'Newsletter', 'rules' => 'integer'),
+			//array('field' => 'register_first_name', 'label' => 'First Name', 'rules' => 'required'),
+			//array('field' => 'register_last_name', 'label' => 'Last Name', 'rules' => 'required'),
+			//array('field' => 'register_phone_number', 'label' => 'Phone Number', 'rules' => 'required'),
+			//array('field' => 'register_newsletter', 'label' => 'Newsletter', 'rules' => 'integer'),
 			array('field' => 'register_email_address', 'label' => 'Email Address', 'rules' => 'required|valid_email|identity_available'),
-			array('field' => 'register_username', 'label' => 'Username', 'rules' => 'required|min_length[4]|identity_available'),
+			//array('field' => 'register_username', 'label' => 'Username', 'rules' => 'required|min_length[4]|identity_available'),
 			array('field' => 'register_password', 'label' => 'Password', 'rules' => 'required|validate_password'),
 			array('field' => 'register_confirm_password', 'label' => 'Confirm Password', 'rules' => 'required|matches[register_password]')
 		);

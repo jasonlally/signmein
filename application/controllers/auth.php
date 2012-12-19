@@ -49,13 +49,15 @@ class Auth extends CI_Controller {
 		}
 		
 		// Note: This is only included to create base urls for purposes of this demo only and are not necessarily considered as 'Best practice'.
-		$this->load->vars('base_url', 'http://localhost/flexi_auth/');
-		$this->load->vars('includes_dir', 'http://localhost/flexi_auth/includes/');
+		$this->load->vars('base_url', '/');
+		$this->load->vars('includes_dir', '/includes/');
 		$this->load->vars('current_url', $this->uri->uri_to_assoc(1));
 		
 		// Define a global variable to store data that is then used by the end view page.
 		$this->data = null;
 	}
+
+
 
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	
 	// flexi auth demo
@@ -174,13 +176,16 @@ class Auth extends CI_Controller {
 		else if ($this->input->post('register_user'))
 		{			
 			$this->load->model('demo_auth_model');
+			echo "test";
 			$this->demo_auth_model->register_account();
 		}
-		
+		//ChromePHP::log('status');
 		// Get any status message that may have been set.
 		$this->data['message'] = (! isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];		
 
-		$this->load->view('demo/public_examples/register_view', $this->data);
+		//$this->load->view('demo/public_examples/register_view', $this->data);
+		$this->load->view('auth/register_account', $this->data);
+		//$this->_render('auth/register_account');
 	}
 
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	

@@ -9,7 +9,7 @@
   <!-- Headings & Paragraph Copy -->
   <div class="row">
     <div class="span4">
-      <h3>Typographic scale</h3>
+      <h3>Typographic scale <?php echo $test;?></h3>
       <p>The entire typographic grid is based on two Less variables in our variables.less file: <code>@baseFontSize</code> and <code>@baseLineHeight</code>. The first is the base font-size used throughout and the second is the base line-height.</p>
       <p>We use those variables, and some math, to create the margins, paddings, and line-heights of all our type and more.</p>
     </div>

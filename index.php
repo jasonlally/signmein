@@ -33,6 +33,8 @@ if (defined('ENVIRONMENT'))
 	{
 		case 'development':
 			error_reporting(E_ALL);
+			// Load ChromePhp for PHP debugging in Google's Chrome browser
+			include 'application/libraries/ChromePhp.php';
 		break;
 	
 		case 'testing':
