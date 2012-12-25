@@ -48,5 +48,59 @@ class Home extends MY_Controller {
 		$this->title = "Sign Up | Sign Me In";
 		$this->_render('home/register');
 	}
+	
+	/**
+	 * login
+	 * Login page used by all user types to log into their account.
+	 * This demo includes 3 example accounts that can be logged into via using either their email address or username. The login details are provided within the view page.
+	 * Users without an account can register for a new account.
+	 * Note: This page is only accessible to users who are not currently logged in, else they will be redirected.
+	 */ 
+    function login()
+    {	
+		// If 'Login' form has been submited, attempt to log the user in.
+		if ($this->input->post('login_user'))
+		{
+			$this->load->model('demo_auth_model');
+			$this->demo_auth_model->login();
+		}
+			
+		// CAPTCHA Example
+		// Check whether there are any existing failed login attempts from the users ip address and whether those attempts have exceeded the defined threshold limit.
+		// If the user has exceeded the limit, generate a 'CAPTCHA' that the user must additionally complete when next attempting to login.
+		if ($this->flexi_auth->ip_login_attempts_exceeded())
+		{
+			/**
+			 * reCAPTCHA
+			 * http://www.google.com/recaptcha
+			 * To activate reCAPTCHA, ensure the 'recaptcha()' function below is uncommented and then comment out the 'math_captcha()' function further below.
+			 *
+			 * A boolean variable can be passed to 'recaptcha()' to set whether to use SSL or not.
+			 * When displaying the captcha in a view, reCAPTCHA generates all html required for display. 
+			 * 
+			 * Note: To use this example, you will also need to enable the recaptcha examples in 'models/demo_auth_model.php', and 'views/demo/login_view.php'.
+			*/
+			$this->data['captcha'] = $this->flexi_auth->recaptcha(FALSE);
+						
+			/**
+			 * flexi auths math CAPTCHA
+			 * Math CAPTCHA is a basic CAPTCHA style feature that asks users a basic maths based question to validate they are indeed not a bot.
+			 * For flexibility on CAPTCHA presentation, the 'math_captcha()' function only generates a string of the equation, see the example below.
+			 * 
+			 * To activate math_captcha, ensure the 'math_captcha()' function below is uncommented and then comment out the 'recaptcha()' function above.
+			 *
+			 * Note: To use this example, you will also need to enable the math_captcha examples in 'models/demo_auth_model.php', and 'views/demo/login_view.php'.
+			*/
+			# $this->data['captcha'] = $this->flexi_auth->math_captcha(FALSE);
+		}
+				
+		// Get any status message that may have been set.
+		$this->data['message'] = (! isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];		
+
+		$this->template = "front";
+		$this->title = "Sign In | Sign Me In";
+		$this->_render('home/login');
+		/*$this->load->view('demo/login_view', $this->data);*/
+    }
 
 }
