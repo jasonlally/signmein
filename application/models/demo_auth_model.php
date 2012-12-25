@@ -2,14 +2,14 @@
 
 class Demo_auth_model extends MY_Model {
 	
-	protected $CI;
+	//protected $CI;
 	
 	// The following method prevents an error occurring when $this->data is modified.
 	// Error Message: 'Indirect modification of overloaded property Demo_cart_admin_model::$data has no effect'.
 	public function &__get($key)
 	{
-		$this->CI =& get_instance();
-		return $this->CI->$key;
+		$CI =& get_instance();
+		return $CI->$key;
 	}
 
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	

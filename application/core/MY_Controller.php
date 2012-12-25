@@ -5,7 +5,7 @@ if (!defined('BASEPATH'))
 class MY_Controller extends CI_Controller {
 
 	//Page info
-	protected $data = Array();
+	public $data = Array();
 	protected $pageName = FALSE;
 	protected $template = "main";
 	protected $hasNav = TRUE;
@@ -23,17 +23,40 @@ class MY_Controller extends CI_Controller {
 	function __construct() {
 
 		parent::__construct();
+		$this -> auth = new stdClass;
+		$this -> load -> library('flexi_auth');
+		$this -> data = null;
+		// To load the CI benchmark and memory usage profiler - set 1==1.
+		if (1 == 2) {
+			$sections = array('benchmarks' => TRUE, 'memory_usage' => TRUE, 'config' => FALSE, 'controller_info' => FALSE, 'get' => FALSE, 'post' => FALSE, 'queries' => FALSE, 'uri_string' => FALSE, 'http_headers' => FALSE, 'session_data' => FALSE);
+			$this -> output -> set_profiler_sections($sections);
+			$this -> output -> enable_profiler(TRUE);
+		}
+
+		// Example flexi auth library call within extended controller.
+		$this -> data['login_status'] = $this -> flexi_auth -> is_logged_in();
 		$this -> data["uri_segment_1"] = $this -> uri -> segment(1);
 		$this -> data["uri_segment_2"] = $this -> uri -> segment(2);
 		$this -> title = $this -> config -> item('site_title');
 		$this -> description = $this -> config -> item('site_description');
 		$this -> keywords = $this -> config -> item('site_keywords');
 		$this -> author = $this -> config -> item('site_author');
+		// Example flexi auth library call within extended controller.
+		$this -> data['login_status'] = $this -> flexi_auth -> is_logged_in();
+
+		// Load required CI libraries and helpers.
+		$this -> load -> database();
+		$this -> load -> library('session');
+		$this -> load -> helper('url');
+		$this -> load -> helper('form');
+
+		// Note: This is only included to create base urls for purposes of this demo only and are not necessarily considered as 'Best practice'.
+		$this -> load -> vars('base_url', '/');
+		$this -> load -> vars('includes_dir', '/includes/');
+		$this -> load -> vars('current_url', $this -> uri -> uri_to_assoc(1));
 
 		$this -> pageName = strToLower(get_class($this));
-		
-		$this->CI =& get_instance();
-		
+
 	}
 
 	protected function _render($view) {

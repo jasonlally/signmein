@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Auth extends CI_Controller {
+class Auth extends MY_Controller {
  
     function __construct() 
     {
@@ -18,19 +18,6 @@ class Auth extends CI_Controller {
 			$this->output->enable_profiler(TRUE);
 		}
 		
-		// Load required CI libraries and helpers.
-		$this->load->database();
-		$this->load->library('session');
- 		$this->load->helper('url');
- 		$this->load->helper('form');
-
-  		// IMPORTANT! This global must be defined BEFORE the flexi auth library is loaded! 
- 		// It is used as a global that is accessible via both models and both libraries, without it, flexi auth will not work.
-		$this->auth = new stdClass;
-		
-		// Load 'standard' flexi auth library by default.
-		$this->load->library('flexi_auth');	
-		
      	// Redirect users logged in via password (However, not 'Remember me' users, as they may wish to login properly).
 		if ($this->flexi_auth->is_logged_in_via_password() && uri_string() != 'auth/logout') 
 		{
@@ -47,14 +34,6 @@ class Auth extends CI_Controller {
 				redirect('auth_public/dashboard');
 			}
 		}
-		
-		// Note: This is only included to create base urls for purposes of this demo only and are not necessarily considered as 'Best practice'.
-		$this->load->vars('base_url', '/');
-		$this->load->vars('includes_dir', '/includes/');
-		$this->load->vars('current_url', $this->uri->uri_to_assoc(1));
-		
-		// Define a global variable to store data that is then used by the end view page.
-		$this->data = null;
 	}
 
 

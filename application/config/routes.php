@@ -38,8 +38,9 @@
 |
 */
 
-$route['default_controller'] = "auth/index";
+$route['default_controller'] = "home";
 $route['404_override'] = '';
+$route['^(register|login|about|contact)(/:any)?$'] = "home/$0"; 
 
 
 /* End of file routes.php */

@@ -3,7 +3,7 @@
 	<p class="lead">
 		Manage participant sign-ins with the tools to help you deepen and increase engagement with your process, brand or organization
 	</p>
-	<a class="btn btn-large btn-success" href="#">Sign up today</a>
+	<a class="btn btn-large btn-success" href="register">Sign up today</a>
 </div>
 
 <hr>
