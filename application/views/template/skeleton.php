@@ -13,8 +13,7 @@
 <meta name="author" content="<?php echo $author ?>" />
 
 
-<link rel="stylesheet" href="<?php echo base_url(CSS."bootstrap.css");?>">
-<link rel="stylesheet" href="<?php echo base_url(CSS."bootstrap-responsive.css");?>">
+<link rel="stylesheet" href="<?php echo base_url(CSS."style.css");?>">
 <link rel="stylesheet" href="<?php echo base_url(CSS."global.css");?>">
 
 <!-- extra CSS-->
