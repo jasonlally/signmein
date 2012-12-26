@@ -2,19 +2,19 @@
 <div class="container-narrow">
 	<div class="masthead">
 	<ul class="nav nav-pills pull-right">
-		<li class="active">
+		<li class="<?php echo isActive($pageName,"")?>">
 			<a href="/">Home</a>
 		</li>
-		<li>
+		<li class="<?php echo isActive($pageName,"about")?>">
 			<a href="#">About</a>
 		</li>
-		<li>
+		<li class="<?php echo isActive($pageName,"contact")?>">
 			<a href="#">Contact</a>
 		</li>
-		<li>
+		<li class="<?php echo isActive($pageName,"register")?>">
 			<a href="/register">Register</a>
 		</li>
-		<li>
+		<li class="<?php echo isActive($pageName,"login")?>">
 			<a href="/login">Login</a>
 		</li>
 	</ul>

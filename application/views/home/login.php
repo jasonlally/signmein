@@ -1,3 +1,9 @@
+<?php if (! empty($message)) { ?>
+<div id="message" class="alert alert-error">
+	<?php echo $message; ?>
+</div>
+<?php } ?>
+
 <?php echo form_open(current_url(), 'class="form-signin"'); ?>
 <fieldset class="w50 parallel_target">
 	<h2 class="form-signin-heading" >Please log in</h2>

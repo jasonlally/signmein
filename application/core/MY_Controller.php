@@ -55,7 +55,8 @@ class MY_Controller extends CI_Controller {
 		$this -> load -> vars('includes_dir', '/includes/');
 		$this -> load -> vars('current_url', $this -> uri -> uri_to_assoc(1));
 
-		$this -> pageName = strToLower(get_class($this));
+		//$this -> pageName = strToLower(get_class($this));
+		$this -> pageName = strToLower(uri_string());
 
 	}
 
@@ -79,6 +80,7 @@ class MY_Controller extends CI_Controller {
 			$this -> load -> helper("nav");
 			$toMenu["pageName"] = $this -> pageName;
 			$toHeader["nav"] = $this -> load -> view("template/nav", $toMenu, true);
+			$toBody["pageNmae"] = $this -> pageName;
 		}
 		$toHeader["basejs"] = $this -> load -> view("template/basejs", $this -> data, true);
 

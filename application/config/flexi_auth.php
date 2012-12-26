@@ -247,7 +247,7 @@
 	 * Note: Ensure you consistently use the same data type in all defined flexi auth tables for date and time data.
 	*/ 
 	$config['database']['settings']['date_time'] = date('Y-m-d H:i:s'); 
-	
+	#$config['database']['settings']['date_time'] = time(); 
 	
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	
 	// SESSION NAMES / ALIASES
@@ -583,7 +583,7 @@
 	 * This option allows admins to verify account details before enabling users.
 	 * @param: bool
 	*/
-	$config['settings']['suspend_new_accounts'] = FALSE;
+	$config['settings']['suspend_new_accounts'] = TRUE;
 
 	/**
 	 * Set a time limit to grant users instant login access, once expired, they are locked out until they activate their account via an activation email sent to them.
