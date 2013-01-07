@@ -69,7 +69,7 @@ class Demo_auth_model extends MY_Model {
 			$this->session->set_flashdata('message', $this->flexi_auth->get_messages());
 
 			// Reload page, if login was successful, sessions will have been created that will then further redirect verified users.
-			redirect('auth');
+			redirect('dashboard');
 		}
 		else
 		{	
@@ -115,6 +115,7 @@ class Demo_auth_model extends MY_Model {
 			//array('field' => 'register_phone_number', 'label' => 'Phone Number', 'rules' => 'required'),
 			//array('field' => 'register_newsletter', 'label' => 'Newsletter', 'rules' => 'integer'),
 			array('field' => 'register_email_address', 'label' => 'Email Address', 'rules' => 'required|valid_email|identity_available'),
+			//@TODO: remember to generate a random number for the username that the user can change later
 			//array('field' => 'register_username', 'label' => 'Username', 'rules' => 'required|min_length[4]|identity_available'),
 			array('field' => 'register_password', 'label' => 'Password', 'rules' => 'required|validate_password'),
 			array('field' => 'register_confirm_password', 'label' => 'Confirm Password', 'rules' => 'required|matches[register_password]')
@@ -168,11 +169,11 @@ class Demo_auth_model extends MY_Model {
 				if ($instant_activate && $this->flexi_auth->login($email, $password))
 				{
 					// Redirect user to public dashboard.
-					redirect('auth_public/dashboard');
+					redirect('dashboard');
 				}
 				
 				// Redirect user to login page
-				redirect('auth');
+				redirect('login');
 			}
 		}
 

@@ -1,10 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Auth_public extends MY_Controller {
+class Dashboard extends MY_Controller {
  
     function __construct() 
     {
-        parent::__construct();
+    	parent::__construct();
 
 		// Check user is logged in via either password or 'Remember me'.
 		// Note: Allow access to logged out users that are attempting to validate a change of their email address via the 'update_email' page/method.
@@ -13,7 +13,7 @@ class Auth_public extends MY_Controller {
 			// Set a custom error message.
 			$this->flexi_auth->set_error_message('You must login to access this area.', TRUE);
 			$this->session->set_flashdata('message', $this->flexi_auth->get_messages());
-			redirect('auth');
+			redirect('login');
 		}
 	}
 
@@ -42,7 +42,10 @@ class Auth_public extends MY_Controller {
 	 */ 
 	function index()
     {
-		//redirect('auth_public/dashboard');
+    	$this->title = "Sign Me In";
+    	$this->keywords = "registration, sign-in, participant tracking";
+			$this->data['message'] = ( ! isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];
+			$this->_render('dashboard/index');
 	}
  
  	/**
@@ -229,5 +232,5 @@ class Auth_public extends MY_Controller {
 	}
 }
 	
-/* End of file auth_public.php */
-/* Location: ./application/controllers/auth_public.php */	
+/* End of file dashboard.php */
+/* Location: ./application/controllers/dashboard.php */

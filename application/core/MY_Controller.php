@@ -9,6 +9,7 @@ class MY_Controller extends CI_Controller {
 	protected $pageName = FALSE;
 	protected $template = "main";
 	protected $hasNav = TRUE;
+	protected $hasFooter = TRUE;
 	//Page contents
 	protected $javascript = array();
 	protected $css = array();
@@ -25,7 +26,10 @@ class MY_Controller extends CI_Controller {
 		parent::__construct();
 		$this -> auth = new stdClass;
 		$this -> load -> library('flexi_auth');
-		$this -> data = null;
+		if (ENVIRONMENT == 'development') {
+			$this -> load -> helper('ChromePhp');
+		}
+		//$this -> data = null;
 		// To load the CI benchmark and memory usage profiler - set 1==1.
 		if (1 == 2) {
 			$sections = array('benchmarks' => TRUE, 'memory_usage' => TRUE, 'config' => FALSE, 'controller_info' => FALSE, 'get' => FALSE, 'post' => FALSE, 'queries' => FALSE, 'uri_string' => FALSE, 'http_headers' => FALSE, 'session_data' => FALSE);
@@ -35,8 +39,6 @@ class MY_Controller extends CI_Controller {
 
 		// Example flexi auth library call within extended controller.
 		$this -> data['login_status'] = $this -> flexi_auth -> is_logged_in();
-		$this -> data["uri_segment_1"] = $this -> uri -> segment(1);
-		$this -> data["uri_segment_2"] = $this -> uri -> segment(2);
 		$this -> title = $this -> config -> item('site_title');
 		$this -> description = $this -> config -> item('site_description');
 		$this -> keywords = $this -> config -> item('site_keywords');
@@ -61,6 +63,9 @@ class MY_Controller extends CI_Controller {
 	}
 
 	protected function _render($view) {
+		$this -> data["uri_segment_1"] = $this -> uri -> segment(1);
+		$this -> data["uri_segment_2"] = $this -> uri -> segment(2);
+
 		//static
 		$toTpl["javascript"] = $this -> javascript;
 		$toTpl["css"] = $this -> css;
@@ -82,11 +87,13 @@ class MY_Controller extends CI_Controller {
 			$toHeader["nav"] = $this -> load -> view("template/nav", $toMenu, true);
 			$toBody["pageNmae"] = $this -> pageName;
 		}
+
 		$toHeader["basejs"] = $this -> load -> view("template/basejs", $this -> data, true);
-
 		$toBody["header"] = $this -> load -> view("template/header", $toHeader, true);
-		$toBody["footer"] = $this -> load -> view("template/footer", '', true);
 
+		if ($this -> hasFooter) {
+			$toBody["footer"] = $this -> load -> view("template/footer", '', true);
+		}
 		$toTpl["body"] = $this -> load -> view("template/" . $this -> template, $toBody, true);
 
 		//render view

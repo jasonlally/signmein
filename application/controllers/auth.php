@@ -6,18 +6,6 @@ class Auth extends MY_Controller {
     {
         parent::__construct();
 		
-		// To load the CI benchmark and memory usage profiler - set 1==1.
-		if (1==2) 
-		{
-			$sections = array(
-				'benchmarks' => TRUE, 'memory_usage' => TRUE, 
-				'config' => FALSE, 'controller_info' => FALSE, 'get' => FALSE, 'post' => FALSE, 'queries' => FALSE, 
-				'uri_string' => FALSE, 'http_headers' => FALSE, 'session_data' => FALSE
-			); 
-			$this->output->set_profiler_sections($sections);
-			$this->output->enable_profiler(TRUE);
-		}
-		
      	// Redirect users logged in via password (However, not 'Remember me' users, as they may wish to login properly).
 		if ($this->flexi_auth->is_logged_in_via_password() && uri_string() != 'auth/logout') 
 		{

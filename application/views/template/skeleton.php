@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title><?php echo $title ?></title>
 <meta name="description" content="<?php echo $description ?>" />
-<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="keywords" content="<?php echo $keywords ?>" />
 <meta name="author" content="<?php echo $author ?>" />
 
@@ -23,8 +23,7 @@
 
 <!-- extra fonts-->
 <?php foreach($fonts as $f):?>
-<link href="http://fonts.googleapis.com/css?family=<?php echo $f?>"
-	rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=<?php echo $f?>" rel="stylesheet" type="text/css">
 <?php endforeach;?>
 <script src="<?php echo base_url(JS."libs/modernizr-2.6.1-respond-1.1.0.min.js");?>"></script>
 

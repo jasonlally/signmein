@@ -31,7 +31,7 @@
 * Requirements: PHP5 or above and Codeigniter 2.0+
 */
 
-class Flexi_auth_lite_model extends CI_Model
+class Flexi_auth_lite_model extends MY_Model
 {
 	public function __construct()
 	{

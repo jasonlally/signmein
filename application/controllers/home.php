@@ -6,6 +6,7 @@ class Home extends MY_Controller {
 
 	function __construct() {
 		parent::__construct();
+		$this -> template = "front";
 	}
 
 	public function index() {
@@ -15,9 +16,6 @@ class Home extends MY_Controller {
 		 */
 		$this -> title = "Sign Me In";
 		$this -> keywords = "registration, sign-in, participant tracking";
-		$this -> hasNav = TRUE;
-		$this -> template = "front";
-		$this -> data = array('test' => 'test');
 
 		$this -> _render('home/index');
 	}
@@ -43,7 +41,6 @@ class Home extends MY_Controller {
 
 		//$this->load->view('demo/public_examples/register_view', $this->data);
 		//$this -> load -> view('auth/register_account', $this -> data);
-		$this -> template = "front";
 		$this -> title = "Sign Up | Sign Me In";
 		$this -> _render('home/register');
 	}
@@ -67,7 +64,7 @@ class Home extends MY_Controller {
 			if ($this -> flexi_auth -> is_admin()) {
 				redirect('auth_admin/dashboard');
 			} else {
-				redirect('auth_public/dashboard');
+				redirect('dashboard');
 			}
 		}
 		// If 'Login' form has been submited, attempt to log the user in.
@@ -113,4 +110,34 @@ class Home extends MY_Controller {
 		/*$this->load->view('demo/login_view', $this->data);*/
 	}
 
+
+/**
+	 * about
+	 * A static page about the application
+	 */
+	function about() {
+		/*
+		 *set up title and keywords (if not the default in custom.php config file will be set)
+		 */
+		$this -> title = "About | Sign Me In";
+		$this -> keywords = "registration, sign-in, participant tracking";
+		$this -> data = array('test' => 'test');
+
+		$this -> _render('home/about');
+	}
+	
+	/**
+	 * contact
+	 * A static page on how to contact me
+	 */
+	function contact() {
+		/*
+		 *set up title and keywords (if not the default in custom.php config file will be set)
+		 */
+		$this -> title = "Contact | Sign Me In";
+		$this -> keywords = "registration, sign-in, participant tracking";
+
+		$this -> _render('home/contact');
+	}
+	
 }
