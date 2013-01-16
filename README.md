@@ -41,3 +41,9 @@ Author
 +	[http://www.arnodo.net](http://www.arnodo.net)
 
 +	<mailto:alessandro@arnodo.net>
+
+=======
+signmein
+========
+
+Prototype project to bridge engagement in the real world with the virtual

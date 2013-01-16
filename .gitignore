@@ -4,6 +4,7 @@
 
 
 #Codeigniter
+=======
 */config/development
 */logs/log-*.php
 */logs/!index.html
