@@ -15,6 +15,12 @@ class Dashboard extends MY_Controller {
 			$this->session->set_flashdata('message', $this->flexi_auth->get_messages());
 			redirect('login');
 		}
+		
+		$this->load->config('menus');
+		$menu = $this->config->item('menu');
+		$this->menu->container_tag_class = 'nav';
+		$this->top_nav = $this->menu->render($menu['dashboard_top'], $this->active, NULL, 'basic');
+		
 	}
 
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	

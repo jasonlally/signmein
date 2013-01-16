@@ -1,18 +1,9 @@
 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
-<a class="brand" href="#">Project name</a>
+<a class="brand" href="#">Sign Me In</a>
 <div class="nav-collapse collapse">
 	<p class="navbar-text pull-right">
-		Logged in as <a href="#" class="navbar-link">Username</a>
+		Logged in as <a href="#" class="navbar-link"><?php echo $this->flexi_auth->get_user_identity(); ?></a>
 	</p>
-	<ul class="nav">
-		<li class="active">
-			<a href="#">Home</a>
-		</li>
-		<li>
-			<a href="#about">About</a>
-		</li>
-		<li>
-			<a href="#contact">Contact</a>
-		</li>
-	</ul>
+	<?php echo $top_nav;?>
 </div><!--/.nav-collapse -->
+

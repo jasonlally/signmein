@@ -30,7 +30,7 @@ class Signin_model extends MY_Model
 	/**
 	 *
 	 */
-	public function get_signin($var)
+	public function get_signins($var)
 	{
 
 	}
